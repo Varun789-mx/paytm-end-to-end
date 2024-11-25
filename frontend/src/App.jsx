@@ -1,11 +1,9 @@
-
-function App() {
-
+import { Login } from "./components/Login";
+import SignupForm from "./components/Signup";
+export default function App() {
   return (
     <div>
-        Hello world
+      <SignupForm />
     </div>
-  )
+  );
 }
-
-export default App
