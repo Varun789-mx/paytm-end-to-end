@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-
+import config from "./config.js";
 try {
-  mongoose.connect("mongodb://127.0.0.1:27017");
+  mongoose.connect(config.MONGOOSE_URI);
 } catch (error) {
   console.log("Connection failed", error);
 }

@@ -3,8 +3,10 @@ import cors from "cors";
 import { User_Schema } from "../db.js";
 import new_user from "./zodschemas/schema.js";
 import jwt from "jsonwebtoken";
+import config from "../config.js";
+
 const Signup = express();
-const JWT_SECRET = "HARSH@O57";
+const JWT_SECRET = config.JWT_SECRET;
 
 Signup.use(express.json());
 Signup.use(cors());
@@ -41,7 +43,7 @@ Signup.post("/signup", async (req, res) => {
     );
     res.status(300).send({
       msg: "User successfully created",
-      token,
+      Authorization: `Bearer ${token}`,
     });
   } catch (error) {
     console.log("Error in server", error);
