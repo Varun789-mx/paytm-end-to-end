@@ -1,20 +1,19 @@
-import mongoose from "mongoose";
-import config from "./config.js";
-try {
-  mongoose.connect(config.MONGOOSE_URI);
-} catch (error) {
-  console.log("Connection failed", error);
-}
+import express from "express";
+import signin_user from "./routes/zodschemas/uservalidate";
 
-const user = new mongoose.Schema(
-  {
-    First_name: { type:String, required: true },
-    Last_name: { type:String, required: true },
-    Email: { type:String, required: true, unique: true, },
-    Mobile: String,
-    Password: { type:String, required: true },
-  },
-  { timestamps: true }
-);
+// import Signup from "./routes/Signup.js";
 
-export  const User_Schema = mongoose.model("User_Schema", user);
+const app = express();
+const port = 4000;
+
+app.use(express.json());
+app.use(cors());
+app.use(signin_user);
+
+app.get("/api/v1/user", (req, res) => {
+  res.send("Hello world");
+});
+
+app.listen(port, () => {
+  console.log(`Backend started at ${port}`);
+});

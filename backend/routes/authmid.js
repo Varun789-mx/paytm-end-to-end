@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken";
-import config from "../../config";
+import config from "../config.js";
 
 const authmiddleware = (req, res, next) => {
   const authheader = req.headers.Authorization;
   if (!authheader || !authheader.startsWith("Bearer")) {
-    return res.status(403).json({
+    return res.status(401).json({
       msg: "Missing or incorrect header"
     });
   }
@@ -25,6 +25,4 @@ const authmiddleware = (req, res, next) => {
   }
 };
 
-module.exports = {
-  authmiddleware,
-};
+export default authmiddleware;

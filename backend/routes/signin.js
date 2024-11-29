@@ -3,9 +3,12 @@ import { User_Schema } from "../db.js";
 import jwt from "jsonwebtoken";
 import signin_user from "./zodschemas/uservalidate.js";
 const JWT_SECRET = config.JWT_SECRET;
+import bcrypt from "bcrypt";
 import cors from "cors";
+import config from "../config.js";
 
 const signin = express();
+
 
 signin.use(express.json());
 signin.use(cors());
@@ -31,12 +34,14 @@ signin.post("/signin", async (req, res, next) => {
         msg: "user not found please sign up",
       });
     }
-    const valid_Pass = user.Password === Password;
+
+    const valid_Pass = bcrypt.compare(valid_data.data.Password, Password);
     if (!valid_Pass) {
       return res.status(404).json({
         msg: "Incorrect Email or password",
       });
     }
+
     const token = jwt.sign({ id: user._id, Email: user.Email }, JWT_SECRET, {
       expiresIn: "1h",
     });
@@ -47,8 +52,9 @@ signin.post("/signin", async (req, res, next) => {
   } catch (error) {
     res.status(404).json({
       msg: "Server unreachable",
+      issues: error,
     });
   }
 });
 
-module.exports = signin;
+export default signin;
