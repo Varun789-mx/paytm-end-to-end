@@ -16,8 +16,15 @@ const user = new mongoose.Schema(
   },
   { timestamps: true }
 );
+const user_ledger = new mongoose.Schema(
+  {
+    User_id: mongoose.Schema.Types.ObjectId,
+    ref: user,
+    Balance: { type: Number, required: true, default: 0 },
+  },
+  { timestamps: true }
+);
 
-
-
-export const User_Schema = mongoose.model("User_Schema", user);
-
+const User_Schema = mongoose.model("User_Schema", user);
+const Ledger = mongoose.model("Ledger", user_ledger);
+module.exports = { User_Schema, Ledger };
