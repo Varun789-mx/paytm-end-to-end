@@ -17,20 +17,7 @@ const user = new mongoose.Schema(
   { timestamps: true }
 );
 
-// const accoutschema = new mongoose.Schema(
-//   {
-//     userid: {
-//       id: mongoose.Types.ObjectId,
-//       ref: user
-//     },
-//     balance: {
-//       type: Number,
-//       required: true,
-//       default: 0.0,
-//     },
-//   },
-//   { timestamps: true }
-// );
+
 
 export const User_Schema = mongoose.model("User_Schema", user);
-// export const Balance = mongoose.model("Balance", accoutschema);
+

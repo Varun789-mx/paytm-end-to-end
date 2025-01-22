@@ -9,7 +9,6 @@ import config from "../config.js";
 
 const signin = express();
 
-
 signin.use(express.json());
 signin.use(cors());
 
