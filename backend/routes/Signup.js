@@ -59,4 +59,4 @@ Signup.post("/signup", async (req, res) => {
   }
 });
 
-module.exports = Signup;
+export default Signup;

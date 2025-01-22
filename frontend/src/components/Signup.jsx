@@ -20,7 +20,7 @@ const SignupForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    fetch("http://localhost:4000/signup", {
+    fetch("http://localhost:4000/api/v1/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -88,9 +88,10 @@ const SignupForm = () => {
             onChange={handleChange}
             className="w-full px-3 py-2 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400"
             required
-          /> 
+          />
           <button
             type="submit"
+            onClick={handleSubmit}
             className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition duration-300"
           >
             Sign Up
