@@ -1,9 +1,10 @@
-import { useMemo, useState } from "react";
+import React from "react";
+import { useState } from "react";
 import { Loginbut } from "./LoginBut";
 import openEye from "../assets/openeye.png";
 import closeEye from "../assets/closeeye.png";
 
-export const Login = () => {
+const Login = () => {
   const [eye, setEye] = useState(false);
   const HandleEye = (e) => {
     e.preventDefault();
@@ -29,19 +30,18 @@ export const Login = () => {
             <div className="p-2">
               <label className="block text-sm font-medium text-green-700 mb-3">
                 Password:
-                </label>
-                <div className="relative">
-                  
-                  <input
-                    type={eye ? "text" : "password"}
-                    className="w-full px-4 py-3"
-                    placeholder="Enter your password"
-                  />
-                  <button type="button" onClick={HandleEye}>
-                    <img src={eye ? openEye : closeEye} className="w-5" />
-                  </button>
-                </div>
-              
+              </label>
+              <div className="relative">
+                <input
+                  type={eye ? "text" : "password"}
+                  className="w-full px-4 py-3"
+                  placeholder="Enter your password"
+                />
+                <button type="button" onClick={HandleEye}>
+                  <img src={eye ? openEye : closeEye} className="w-5" />
+                </button>
+              </div>
+
               <Loginbut text={"Login"} />
             </div>
           </div>
@@ -50,3 +50,4 @@ export const Login = () => {
     </div>
   );
 };
+export default Login;
